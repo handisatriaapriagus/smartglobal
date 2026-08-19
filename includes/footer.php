@@ -66,7 +66,10 @@
                 <label class="consent-line"><input type="checkbox" required> <span>I agree to receive marketing communications.</span></label>
             </form>
             <div class="socials" aria-label="Social media links">
-                <a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Facebook">f</a><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="WhatsApp">wa</a>
+                <a href="https://www.linkedin.com/company/smartglobalgroup/" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on LinkedIn">in</a>
+                <a href="https://www.facebook.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Facebook">f</a>
+                <a href="https://www.instagram.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Instagram">◎</a>
+                <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer" aria-label="Contact Smart Global Group on WhatsApp">wa</a>
             </div>
         </section>
     </div>
