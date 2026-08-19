@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS smart_global CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE smart_global;
+
+CREATE TABLE IF NOT EXISTS assessment_requests (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(120) NOT NULL,
+    email VARCHAR(190) NOT NULL,
+    phone VARCHAR(60) NOT NULL,
+    company VARCHAR(160) NOT NULL DEFAULT '',
+    country VARCHAR(100) NOT NULL DEFAULT '',
+    services JSON NOT NULL,
+    budget VARCHAR(80) NOT NULL DEFAULT '',
+    message TEXT NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    INDEX assessment_email_idx (email),
+    INDEX assessment_created_idx (created_at)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(190) NOT NULL UNIQUE,
+    created_at DATETIME NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB;

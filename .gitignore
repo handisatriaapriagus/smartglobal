@@ -1,0 +1,4 @@
+/storage/*.jsonl
+/tmp/
+~$*
+*.log
