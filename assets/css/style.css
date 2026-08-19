@@ -132,14 +132,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 .glass-card h3 { color: var(--navy-900); font-size: 1.35rem; }
 .glass-card p { margin-bottom: 0; font-size: .86rem; }
 .pricing-preview { background: #fff; }
+.currency-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: -12px 0 28px; padding: 14px 16px 14px 20px; border: 1px solid #dce3e8; border-radius: 13px; background: #f5f7f9; }
+.currency-toolbar-copy { display: grid; }
+.currency-toolbar-copy > span { color: var(--navy-900); font-size: .73rem; font-weight: 900; letter-spacing: .04em; text-transform: uppercase; }
+.currency-toolbar-copy small { color: #758493; font-size: .68rem; }
+.currency-options { display: flex; padding: 4px; border: 1px solid #d8e0e6; border-radius: 10px; background: #fff; }
+.currency-options button { min-width: 67px; padding: 8px 12px; border: 0; border-radius: 7px; color: #617182; background: transparent; font-size: .7rem; font-weight: 900; transition: color .2s ease, background .2s ease, box-shadow .2s ease; }
+.currency-options button:hover { color: var(--navy-900); }
+.currency-options button[aria-pressed="true"] { color: var(--navy-900); background: linear-gradient(135deg, #f0ca70, #dca333); box-shadow: 0 5px 13px rgba(205,148,42,.2); }
 .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
 .price-card { display: flex; flex-direction: column; padding: 24px 20px; border: 1px solid #dce3e9; border-radius: 16px; background: #fff; }
 .price-icon { display: grid; width: 45px; height: 45px; margin-bottom: 18px; place-items: center; border-radius: 50%; color: var(--gold-400); background: var(--navy-900); }
 .price-card h3 { min-height: 42px; font-size: 1rem; }
 .price-card > p { min-height: 58px; font-size: .78rem; }
-.price-values { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 13px 0; border-block: 1px solid #e5e9ed; }
-.price-values span { color: var(--navy-900); font-size: .86rem; font-weight: 900; }
-.price-values small { display: block; color: #8b98a4; font-size: .54rem; }
+.price-values { padding: 13px 0; border-block: 1px solid #e5e9ed; }
+.currency-price { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; color: var(--navy-900); }
+.currency-price small { display: block; color: #8b98a4; font-size: .58rem; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
+.currency-price strong { font-size: 1.22rem; line-height: 1; }
 .price-card ul { display: grid; gap: 8px; margin: 19px 0 22px; }
 .price-card li { display: flex; gap: 7px; color: #435769; font-size: .72rem; }
 .price-card li .icon { width: 14px; color: #b57e25; }
@@ -239,9 +248,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 .program-index { color: var(--gold-500); font-weight: 900; }
 .program-card h3 { margin: 13px 0 10px; color: var(--navy-900); font-size: 1.4rem; }
 .program-card > p { min-height: 62px; font-size: .82rem; }
-.program-prices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 8px 0 20px; padding: 14px 0; border-block: 1px solid #e2e7eb; }
-.program-prices span { color: var(--navy-900); font-size: .88rem; font-weight: 900; }
-.program-prices small { display: block; color: #8a98a4; font-size: .5rem; text-transform: uppercase; }
+.program-prices { margin: 8px 0 20px; padding: 14px 0; border-block: 1px solid #e2e7eb; }
+.program-prices .currency-price strong { font-size: 1.28rem; }
 .program-card ul { display: grid; gap: 8px; margin-bottom: 24px; }
 .program-card li { display: flex; gap: 7px; align-items: flex-start; color: #506171; font-size: .72rem; }
 .program-card li .icon { width: 14px; color: #b77c1f; }
@@ -588,6 +596,9 @@ ul { margin: 0; padding: 0; list-style: none; }
     .hero-location-stack span { font-size: .54rem; }
     .service-grid, .benefit-grid, .price-grid, .value-cards, .program-grid, .program-count-4, .education-card-grid, .gallery-grid, .gallery-count-2, .office-grid, .insight-grid, .terms-grid, .join-grid, .partner-content-grid, .career-path-grid { grid-template-columns: 1fr; }
     .service-card { min-height: 280px; }
+    .currency-toolbar { align-items: stretch; flex-direction: column; gap: 12px; margin-top: -4px; }
+    .currency-options { width: 100%; }
+    .currency-options button { flex: 1; min-width: 0; }
     .why-grid { gap: 42px; }
     .purpose-grid .glass-card { display: block; }
     .price-card > p { min-height: auto; }
@@ -646,8 +657,7 @@ ul { margin: 0; padding: 0; list-style: none; }
     .metrics > div { border-right: 0; border-bottom: 1px solid #e1e7ec; }
     .metrics > div:last-child { border-bottom: 0; }
     .metric-bar-dark .metrics > div { border-color: rgba(255,255,255,.15); }
-    .price-values, .program-prices { grid-template-columns: 1fr; }
-    .price-values span, .program-prices span { display: flex; justify-content: space-between; }
+    .currency-price { align-items: center; }
     .footer-grid { grid-template-columns: 1fr; }
     .footer-brand, .footer-connect { grid-column: auto; }
     .footer-contact-row { grid-template-columns: 1fr; }

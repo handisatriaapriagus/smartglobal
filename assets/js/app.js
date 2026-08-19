@@ -53,6 +53,77 @@
         });
     });
 
+    const supportedCurrencies = ['IDR', 'USD', 'EGP'];
+    const currencyButtons = [...document.querySelectorAll('[data-currency]')];
+    const currencyPrices = [...document.querySelectorAll('[data-currency-price]')];
+    const currencyStatuses = [...document.querySelectorAll('[data-currency-status]')];
+
+    const detectCurrency = () => {
+        const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        const languages = navigator.languages || [navigator.language || ''];
+        const languageTags = languages.map((language) => language.toLowerCase());
+        const isIndonesia = /asia\/(jakarta|pontianak|makassar|jayapura)/i.test(timeZone)
+            || languageTags.some((language) => language === 'id' || language.startsWith('id-'));
+        const isEgypt = /africa\/cairo/i.test(timeZone)
+            || languageTags.some((language) => language === 'ar-eg' || language.endsWith('-eg'));
+
+        if (isIndonesia) return 'IDR';
+        if (isEgypt) return 'EGP';
+        return 'USD';
+    };
+
+    const readSavedCurrency = () => {
+        try {
+            const saved = window.localStorage.getItem('smartGlobalCurrency');
+            return supportedCurrencies.includes(saved) ? saved : null;
+        } catch (_) {
+            return null;
+        }
+    };
+
+    const saveCurrency = (currency) => {
+        try {
+            window.localStorage.setItem('smartGlobalCurrency', currency);
+        } catch (_) {
+            // Currency switching still works when browser storage is unavailable.
+        }
+    };
+
+    const applyCurrency = (currency, source = 'automatic') => {
+        if (!supportedCurrencies.includes(currency)) return;
+        document.documentElement.dataset.currency = currency;
+
+        currencyPrices.forEach((price) => {
+            const amount = price.dataset[currency.toLowerCase()];
+            const code = price.querySelector('[data-currency-code]');
+            const value = price.querySelector('[data-currency-amount]');
+            if (code) code.textContent = currency;
+            if (value && amount) value.textContent = amount;
+        });
+
+        currencyButtons.forEach((button) => {
+            button.setAttribute('aria-pressed', String(button.dataset.currency === currency));
+        });
+
+        currencyStatuses.forEach((status) => {
+            status.textContent = source === 'automatic'
+                ? `Automatically selected ${currency} for your region`
+                : `${currency} selected and saved for future visits`;
+        });
+    };
+
+    if (currencyButtons.length || currencyPrices.length) {
+        const savedCurrency = readSavedCurrency();
+        applyCurrency(savedCurrency || detectCurrency(), savedCurrency ? 'saved' : 'automatic');
+        currencyButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const currency = button.dataset.currency;
+                saveCurrency(currency);
+                applyCurrency(currency, 'manual');
+            });
+        });
+    }
+
     const reveals = document.querySelectorAll('.reveal');
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries, instance) => {

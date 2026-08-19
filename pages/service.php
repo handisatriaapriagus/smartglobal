@@ -47,13 +47,14 @@
 <section class="section programs-section" id="programs">
     <div class="container">
         <div class="section-heading centered reveal"><span class="eyebrow">Our Programs</span><h2>Choose the Right Level of Support</h2><p>Transparent starting prices with scope confirmed after your free assessment.</p></div>
+        <?= currency_selector() ?>
         <div class="program-grid program-count-<?= count($service['programs']) ?>">
             <?php foreach ($service['programs'] as $index => $program): ?>
                 <article class="program-card <?= $index === 1 ? 'featured' : '' ?> reveal">
                     <?php if ($index === 1): ?><span class="best-value">Best Value</span><?php endif; ?>
                     <span class="program-index">0<?= $index + 1 ?></span>
                     <h3><?= h($program[0]) ?></h3><p><?= h($program[1]) ?></p>
-                    <div class="program-prices"><span><small>EGP from</small><?= h($program[2]) ?></span><span><small>IDR from</small><?= h($program[3]) ?></span><span><small>USD from</small><?= h($program[4]) ?></span></div>
+                    <div class="program-prices"><?= currency_price($program[2], $program[3], $program[4], true) ?></div>
                     <ul><?php foreach (array_slice($service['features'], 0, 5) as $feature): ?><li><?= icon('check') ?><?= h($feature) ?></li><?php endforeach; ?></ul>
                     <a class="button <?= $index === 1 ? 'button-gold' : 'button-navy' ?>" href="<?= h(page_url('contact', ['service' => $page, 'program' => $program[0]])) ?>">Request This Program <?= icon('arrow') ?></a>
                 </article>

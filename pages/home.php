@@ -84,13 +84,14 @@
             <div><span class="eyebrow">Smart Solutions. Smart Prices.</span><h2>Start Your Global Journey Today</h2></div>
             <p>Choose the solution that fits your goal. Transparent scope, flexible plans, and expert support from start to finish.</p>
         </div>
+        <?= currency_selector() ?>
         <div class="price-grid">
             <?php foreach ($services as $slug => $item): $program = $item['programs'][0]; ?>
                 <article class="price-card reveal">
                     <span class="price-icon"><?= icon($slug === 'consulting' ? 'briefcase' : ($slug === 'education' ? 'book' : ($slug === 'business' ? 'building' : 'spark'))) ?></span>
                     <h3><?= h($item['eyebrow']) ?></h3>
                     <p><?= h($program[1]) ?></p>
-                    <div class="price-values"><span><small>EGP</small><?= h($program[2]) ?></span><span><small>IDR</small><?= h($program[3]) ?></span><span><small>USD</small><?= h($program[4]) ?></span></div>
+                    <div class="price-values"><?= currency_price($program[2], $program[3], $program[4]) ?></div>
                     <ul><?php foreach (array_slice($item['features'], 0, 4) as $feature): ?><li><?= icon('check') ?><?= h($feature) ?></li><?php endforeach; ?></ul>
                     <a class="button button-outline" href="<?= h(page_url($slug)) ?>">Explore <?= h(explode(' ', $item['eyebrow'])[0]) ?> <?= icon('arrow') ?></a>
                 </article>

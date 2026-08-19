@@ -65,6 +65,25 @@ function icon(string $name, string $class = ''): string
     return '<svg class="icon ' . h($class) . '" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' . $path . '</svg>';
 }
 
+function currency_selector(): string
+{
+    return '<div class="currency-toolbar reveal" data-currency-switcher>'
+        . '<div class="currency-toolbar-copy"><span>Display currency</span><small data-currency-status>Detecting your regional currency...</small></div>'
+        . '<div class="currency-options" role="group" aria-label="Choose display currency">'
+        . '<button type="button" data-currency="IDR" aria-pressed="false">IDR</button>'
+        . '<button type="button" data-currency="USD" aria-pressed="false">USD</button>'
+        . '<button type="button" data-currency="EGP" aria-pressed="false">EGP</button>'
+        . '</div></div>';
+}
+
+function currency_price(string $egp, string $idr, string $usd, bool $from = false): string
+{
+    return '<span class="currency-price" data-currency-price data-egp="' . h($egp) . '" data-idr="' . h($idr) . '" data-usd="' . h($usd) . '">'
+        . '<small><span data-currency-code>USD</span>' . ($from ? ' from' : '') . '</small>'
+        . '<strong data-currency-amount>' . h($usd) . '</strong>'
+        . '</span>';
+}
+
 $routes = [
     'home' => ['title' => 'Global Solutions', 'description' => 'Global consulting, education, business setup, and digital AI solutions.'],
     'about' => ['title' => 'About Us', 'description' => 'Meet Smart Global Group and discover our mission, values, and global team.'],

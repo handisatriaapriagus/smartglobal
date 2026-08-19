@@ -9,6 +9,7 @@
         <div class="package-tabs" role="tablist" aria-label="Solution packages">
             <?php foreach ($services as $slug => $item): ?><button type="button" role="tab" aria-selected="<?= $slug === 'consulting' ? 'true' : 'false' ?>" data-package-tab="<?= h($slug) ?>"><b><?= h($item['number']) ?></b><?= h($item['eyebrow']) ?></button><?php endforeach; ?>
         </div>
+        <?= currency_selector() ?>
         <?php foreach ($services as $slug => $item): ?>
             <section class="package-panel" data-package-panel="<?= h($slug) ?>" <?= $slug === 'consulting' ? '' : 'hidden' ?>>
                 <div class="section-heading split"><div><span class="eyebrow"><?= h($item['number']) ?> Solution</span><h2><?= h($item['eyebrow']) ?></h2></div><p><?= h($item['summary']) ?></p></div>
@@ -17,7 +18,7 @@
                         <article class="program-card <?= $index === 1 ? 'featured' : '' ?>">
                             <?php if ($index === 1): ?><span class="best-value">Most Popular</span><?php endif; ?>
                             <span class="program-index">0<?= $index + 1 ?></span><h3><?= h($program[0]) ?></h3><p><?= h($program[1]) ?></p>
-                            <div class="program-prices"><span><small>EGP</small><?= h($program[2]) ?></span><span><small>IDR</small><?= h($program[3]) ?></span><span><small>USD</small><?= h($program[4]) ?></span></div>
+                            <div class="program-prices"><?= currency_price($program[2], $program[3], $program[4]) ?></div>
                             <ul><?php foreach (array_slice($item['features'], 0, 4) as $feature): ?><li><?= icon('check') ?><?= h($feature) ?></li><?php endforeach; ?></ul>
                             <a class="button <?= $index === 1 ? 'button-gold' : 'button-navy' ?>" href="<?= h(page_url('contact', ['service' => $slug, 'program' => $program[0]])) ?>">Select Package <?= icon('arrow') ?></a>
                         </article>
