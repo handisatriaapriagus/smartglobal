@@ -16,11 +16,6 @@
         </div>
         <div class="hero-visual reveal" data-delay="1">
             <img src="<?= h(asset_url('Photos/Gemini_Generated_Image_gsu1legsu1legsu1.jpg')) ?>" alt="Smart Global network connecting Egypt with seven global locations">
-            <div class="hero-location-stack" aria-label="Global locations">
-                <?php foreach ($locations as $location): ?>
-                    <span><i></i><?= h($location[0]) ?></span>
-                <?php endforeach; ?>
-            </div>
         </div>
     </div>
 </section>
