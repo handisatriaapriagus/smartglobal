@@ -1,5 +1,7 @@
 </main>
 
+<?php require __DIR__ . '/footer-assets.php'; ?>
+
 <section class="pre-footer-cta" aria-label="Free assessment call to action">
     <div class="container pre-footer-inner">
         <div class="cta-icon"><?= icon('phone') ?></div>
@@ -14,9 +16,9 @@
 <footer class="site-footer">
     <div class="container footer-grid">
         <section class="footer-brand">
-            <img src="<?= h(asset_url('All Logo/logo.jpeg')) ?>" alt="Smart Global Group">
+            <img src="<?= h(asset_url('All Logo/logo-transparent.png')) ?>" alt="Smart Global Group" width="1254" height="1254">
             <p>Smart Global Group is an international solutions platform headquartered in Egypt, connecting businesses, leaders, students, and institutions with practical solutions and trusted global opportunities.</p>
-            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong> Egypt - Giza Offices - Pyramids Member</span></div>
+            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong>Reqas – New Cairo – Platinum Member – Arabella Plaza – Egypt</span></div>
         </section>
 
         <section>
@@ -45,7 +47,7 @@
             <h2>Global Presence</h2>
             <ul class="location-list">
                 <?php foreach ($locations as $location): ?>
-                    <li><span class="mini-flag" aria-hidden="true"></span><?= h($location[0] . ($location[1] ? ' (' . $location[1] . ')' : '')) ?></li>
+                    <li><?= $footerFlags[$location[0]] ?? '' ?><?= h($location[0] . ($location[1] ? ' (' . $location[1] . ')' : '')) ?></li>
                 <?php endforeach; ?>
             </ul>
             <a class="footer-inline-link" href="<?= h(page_url('presence')) ?>">View all locations <?= icon('arrow') ?></a>
@@ -66,18 +68,18 @@
                 <label class="consent-line"><input type="checkbox" required> <span>I agree to receive marketing communications.</span></label>
             </form>
             <div class="socials" aria-label="Social media links">
-                <a href="https://www.linkedin.com/company/smartglobalgroup/" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on LinkedIn">in</a>
-                <a href="https://www.facebook.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Facebook">f</a>
-                <a href="https://www.instagram.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Instagram">◎</a>
-                <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer" aria-label="Contact Smart Global Group on WhatsApp">wa</a>
+                <a class="social-link social-link--linkedin" href="https://www.linkedin.com/company/smartglobalgroup/" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on LinkedIn"><?= $footerSocialIcons['linkedin'] ?></a>
+                <a class="social-link social-link--instagram" href="https://www.instagram.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Instagram"><?= $footerSocialIcons['instagram'] ?></a>
+                <a class="social-link social-link--facebook" href="https://www.facebook.com/smartglobalgroup" target="_blank" rel="noopener noreferrer" aria-label="Smart Global Group on Facebook"><?= $footerSocialIcons['facebook'] ?></a>
+                <a class="social-link social-link--whatsapp" href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer" aria-label="Contact Smart Global Group on WhatsApp"><?= $footerSocialIcons['whatsapp'] ?></a>
             </div>
         </section>
     </div>
 
     <div class="container footer-contact-row">
-        <a href="tel:+201221640202"><?= icon('phone') ?><span><small>Phone</small>+20 122 164 0202</span></a>
-        <a href="mailto:info@smartglobalgroup.com"><?= icon('mail') ?><span><small>Email</small>info@smartglobalgroup.com</span></a>
-        <span><?= icon('pin') ?><span><small>Egypt Offices</small>Pyramids Member</span></span>
+        <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer"><?= icon('phone') ?><span><small>Phone / WhatsApp</small>+20 122 264 0202</span></a>
+        <a href="mailto:info@smartglobalplatform.com"><?= icon('mail') ?><span><small>Email</small>info@smartglobalplatform.com</span></a>
+        <span class="footer-contact-offices"><?= icon('pin') ?><span><small>Egypt Office</small><b>Reqas – New Cairo – Platinum Member – Arabella Plaza – Egypt</b><small>Indonesia Office</small><b>Prosperity Tower SCBD – South Jakarta</b></span></span>
         <span><?= icon('globe') ?><span><small>Working Hours</small>Sun - Thu / 9:00 - 6:00</span></span>
     </div>
 

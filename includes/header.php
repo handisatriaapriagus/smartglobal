@@ -6,7 +6,7 @@
     <meta name="description" content="<?= h($routes[$page]['description']) ?>">
     <meta name="theme-color" content="#031c35">
     <title><?= h($routes[$page]['title']) ?> | Smart Global Group</title>
-    <link rel="icon" href="<?= h(asset_url('All Logo/logo.jpeg')) ?>">
+    <link rel="icon" type="image/png" href="<?= h(asset_url('All Logo/logo-transparent.png')) ?>">
     <link rel="stylesheet" href="<?= h(asset_url('assets/css/style.css')) ?>">
 </head>
 <body class="page-<?= h($page) ?>">
@@ -14,7 +14,7 @@
 <header class="site-header" data-header>
     <div class="container header-inner">
         <a class="brand" href="<?= h(page_url()) ?>" aria-label="Smart Global Group home">
-            <img src="<?= h(asset_url('All Logo/logo.jpeg')) ?>" alt="Smart Global Group">
+            <img src="<?= h(asset_url('All Logo/logo-transparent.png')) ?>" alt="Smart Global Group" width="1254" height="1254">
         </a>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" data-menu-toggle>
