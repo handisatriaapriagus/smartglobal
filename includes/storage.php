@@ -77,3 +77,81 @@ function persist_record(string $type, array $record): void
     $file = $storageDirectory . '/' . ($type === 'newsletter' ? 'newsletter.jsonl' : 'assessment_requests.jsonl');
     file_put_contents($file, json_encode($record, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . PHP_EOL, FILE_APPEND | LOCK_EX);
 }
+
+function submission_notification_recipients(): array
+{
+    return [
+        'info@smartglobalplatform.com',
+        'info.drmoshehatta@gmail.com',
+    ];
+}
+
+function send_submission_notification(string $type, array $record): bool
+{
+    $isNewsletter = $type === 'newsletter';
+    $subject = $isNewsletter
+        ? 'Smart Global Website: New Newsletter Subscription'
+        : 'Smart Global Website: New Assessment Request';
+
+    $lines = [
+        'A new submission was received from smartglobalplatform.com.',
+        '',
+        'Submission: ' . ($isNewsletter ? 'Newsletter / E-Insights subscription' : 'Free assessment request'),
+        'Submitted at: ' . (string) ($record['created_at'] ?? date(DATE_ATOM)),
+    ];
+
+    $fields = $isNewsletter
+        ? ['Email' => 'email']
+        : [
+            'Name' => 'name',
+            'Email' => 'email',
+            'Phone / WhatsApp' => 'phone',
+            'Company / Organization' => 'company',
+            'Country' => 'country',
+            'Services' => 'services',
+            'Estimated budget' => 'budget',
+            'Message' => 'message',
+        ];
+
+    foreach ($fields as $label => $key) {
+        $value = $record[$key] ?? '';
+        if (is_array($value)) {
+            $value = implode(', ', $value);
+        }
+
+        $lines[] = $label . ': ' . ($value === '' ? '-' : (string) $value);
+    }
+
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: Smart Global Website <website@smartglobalplatform.com>',
+    ];
+
+    $replyTo = filter_var((string) ($record['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    if ($replyTo !== false) {
+        $headers[] = 'Reply-To: ' . $replyTo;
+    }
+
+    $allSent = true;
+    foreach (submission_notification_recipients() as $recipient) {
+        if (!@mail($recipient, $subject, implode(PHP_EOL, $lines), implode(PHP_EOL, $headers))) {
+            $allSent = false;
+        }
+    }
+
+    if (!$allSent) {
+        $storageDirectory = dirname(__DIR__) . '/storage';
+        if (!is_dir($storageDirectory)) {
+            @mkdir($storageDirectory, 0775, true);
+        }
+
+        @file_put_contents(
+            $storageDirectory . '/mail_failures.log',
+            date(DATE_ATOM) . ' | ' . $type . ' | PHP mail() returned false' . PHP_EOL,
+            FILE_APPEND | LOCK_EX
+        );
+    }
+
+    return $allSent;
+}

@@ -44,6 +44,19 @@
 <section class="payment-section section-compact">
     <div class="container payment-grid">
         <div><span class="eyebrow eyebrow-light">Flexible Payment Solutions</span><h2>Plan Today. Pay Your Way.</h2><p>Installment support and multiple local and international payment options are available for eligible programs.</p></div>
-        <div class="payment-marks"><span>VISA</span><span>mastercard.</span><span>PayPal</span><span>Fawry</span><span>valU</span><span>Paymob</span></div>
+        <div class="payment-marks">
+            <span>VISA</span>
+            <span>mastercard.</span>
+            <span>PayPal</span>
+            <span>Fawry</span>
+            <span>valU</span>
+            <span>Alex Bank Business</span>
+            <span>Banque Misr Business</span>
+            <span>CIB Business</span>
+            <span>HSBC UAE Partner</span>
+            <span>Midtrans Indonesia</span>
+            <span>PayTabs UAE Partner</span>
+            <span>International EDC / POS</span>
+        </div>
     </div>
 </section>

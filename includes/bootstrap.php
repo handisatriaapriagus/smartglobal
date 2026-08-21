@@ -27,10 +27,10 @@ function app_base_path(): string
 
 function page_url(string $page = 'home', array $params = []): string
 {
-    $query = $page === 'home' ? $params : ['page' => $page] + $params;
-    $suffix = $query === [] ? '' : '?' . http_build_query($query);
+    $slug = preg_replace('/[^a-z0-9-]/', '', strtolower($page)) ?: 'home';
+    $suffix = $params === [] ? '' : '?' . http_build_query($params);
 
-    return app_base_path() . '/index.php' . $suffix;
+    return app_base_path() . '/' . $slug . $suffix;
 }
 
 function asset_url(string $path): string
@@ -194,6 +194,19 @@ if (!isset($routes[$page])) {
     $page = 'home';
 }
 
+$requestPath = (string) (parse_url((string) ($_SERVER['REQUEST_URI'] ?? ''), PHP_URL_PATH) ?? '');
+$isRootRequest = rtrim($requestPath, '/') === app_base_path();
+
+if (
+    in_array($_SERVER['REQUEST_METHOD'], ['GET', 'HEAD'], true)
+    && (str_contains($requestPath, '/index.php') || $isRootRequest)
+) {
+    $legacyQuery = $_GET;
+    unset($legacyQuery['page']);
+    header('Location: ' . page_url($page, $legacyQuery), true, 301);
+    exit;
+}
+
 if (!isset($_SESSION['csrf_token'])) {
     $_SESSION['csrf_token'] = bin2hex(random_bytes(24));
 }
@@ -214,7 +227,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($email === false) {
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Please enter a valid email address.'];
         } else {
-            persist_record('newsletter', ['email' => $email, 'created_at' => date(DATE_ATOM)]);
+            $record = ['email' => $email, 'created_at' => date(DATE_ATOM)];
+            persist_record('newsletter', $record);
+            send_submission_notification('newsletter', $record);
             $_SESSION['flash'] = ['type' => 'success', 'message' => 'Welcome to Smart Insights. Please watch your inbox.'];
         }
     } elseif ($kind === 'assessment') {
@@ -230,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (!isset($_POST['privacy'])) {
             $_SESSION['flash'] = ['type' => 'error', 'message' => 'Please accept the privacy policy before submitting.'];
         } else {
-            persist_record('assessment', [
+            $record = [
                 'name' => mb_substr($name, 0, 120),
                 'email' => (string) $email,
                 'phone' => mb_substr($phone, 0, 60),
@@ -240,7 +255,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'budget' => mb_substr(trim((string) ($_POST['budget'] ?? '')), 0, 80),
                 'message' => mb_substr($message, 0, 3000),
                 'created_at' => date(DATE_ATOM),
-            ]);
+            ];
+            persist_record('assessment', $record);
+            send_submission_notification('assessment', $record);
             $_SESSION['flash'] = ['type' => 'success', 'message' => 'Thank you. Your free assessment request has been received. Our team will contact you shortly.'];
         }
     }

@@ -4,7 +4,7 @@ Responsive PHP website reconstructed from `rev2 website map.pdf` and the supplie
 
 ## Run with XAMPP
 
-Open `http://localhost/smart_global/` after Apache is running.
+Open `http://localhost/smart_global/home` after Apache is running. Clean page URLs require Apache `mod_rewrite` and `AllowOverride All` for this directory.
 
 The assessment and newsletter forms prefer MySQL using these optional environment variables:
 
@@ -15,6 +15,8 @@ The assessment and newsletter forms prefer MySQL using these optional environmen
 - `SMART_GLOBAL_DB_PASSWORD` (default empty)
 
 Import `database/schema.sql` in phpMyAdmin to enable MySQL storage. Until then, submissions are safely appended to JSONL files inside the protected `storage/` directory.
+
+Assessment and newsletter/E-Insights submissions also send PHP `mail()` notifications to `info@smartglobalplatform.com` and `info.drmoshehatta@gmail.com`. Configure the production server mail transport (SMTP/sendmail) for delivery; failed `mail()` calls are recorded in `storage/mail_failures.log` without blocking form storage.
 
 ## Source asset note
 
