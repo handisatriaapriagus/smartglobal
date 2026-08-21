@@ -113,9 +113,9 @@ $services = [
         'stats' => [['10+', 'Years experience'], ['7', 'Global offices'], ['1000+', 'Clients served'], ['500+', 'Successful projects']],
         'features' => ['Market & opportunity assessment', 'Feasibility and business planning', 'Government and regulatory support', 'Partner and investor matching', 'Risk management and due diligence', 'Implementation roadmaps'],
         'programs' => [
-            ['Smart Start', 'Perfect for entrepreneurs entering a new market.', '15,000', '2,500,000', '299'],
-            ['Global Growth', 'For companies ready to develop international operations.', '35,000', '5,500,000', '698'],
-            ['Global Executive', 'For investors, corporations, and complex international projects.', '75,000', '11,900,000', '1,495'],
+            ['SMART', 'Perfect for entrepreneurs entering a new market.', '15,500', '5,700,000', '299'],
+            ['Global Growth', 'For companies ready to develop international operations.', '36,500', '13,300,000', '698'],
+            ['Global Executive', 'For investors, corporations, and complex international projects.', '77,500', '28,500,000', '1,495'],
         ],
     ],
     'education' => [
@@ -130,9 +130,9 @@ $services = [
         'features' => ['University and school placement', 'Scholarship guidance', 'Professional qualifications', 'Executive and corporate training', 'Language and pathway programs', 'Visa and pre-departure support'],
         'gallery' => ['Photos/Gemini_Generated_Image_7plxuk7plxuk7plx.jpg', 'Photos/Gemini_Generated_Image_h32ykih32ykih32y.jpg', 'Photos/Gemini_Generated_Image_ixn7j2ixn7j2ixn7.jpg'],
         'programs' => [
-            ['Education Abroad', 'University, high school, scholarship, and pathway support.', '7,500', '1,250,000', '149'],
-            ['Professional Training', 'Career-focused courses and internationally recognized certifications.', '15,000', '2,500,000', '299'],
-            ['Smart Global Academy', 'Custom programs for schools, companies, and professional groups.', '35,000', '5,500,000', '698'],
+            ['Education Abroad', 'University, high school, scholarship, and pathway support.', '7,700', '2,900,000', '149'],
+            ['Professional Training', 'Career-focused courses and internationally recognized certifications.', '15,500', '5,700,000', '299'],
+            ['Smart Global Academy', 'Custom programs for schools, companies, and professional groups.', '36,500', '13,300,000', '698'],
         ],
     ],
     'business' => [
@@ -147,9 +147,9 @@ $services = [
         'features' => ['Company formation and licensing', 'Banking and tax coordination', 'Market-entry strategy', 'Local partner introductions', 'Investment and relocation support', 'Operational launch assistance'],
         'gallery' => ['Photos/Gemini_Generated_Image_d1iqlhd1iqlhd1iq.jpg', 'Photos/Gemini_Generated_Image_qtwhgrqtwhgrqtwh.jpg'],
         'programs' => [
-            ['Market Entry', 'Build a compliant route into your selected market.', '15,000', '2,500,000', '299'],
-            ['Global Launch', 'Complete company setup and launch coordination.', '35,000', '5,500,000', '698'],
-            ['Investor 360', 'A complete investor and international expansion package.', '75,000', '11,900,000', '1,495'],
+            ['Market Entry', 'Build a compliant route into your selected market.', '15,500', '5,700,000', '299'],
+            ['Global Launch', 'Complete company setup and launch coordination.', '36,500', '13,300,000', '698'],
+            ['Investor 360', 'A complete investor and international expansion package.', '77,500', '28,500,000', '1,495'],
         ],
     ],
     'digital' => [
@@ -163,10 +163,10 @@ $services = [
         'stats' => [['Secure', 'Reliable systems'], ['AI-ready', 'Automation'], ['Mobile-first', 'Experiences'], ['24/7', 'Technical support']],
         'features' => ['Websites and e-commerce', 'Business systems and CRM', 'AI assistants and automation', 'Data dashboards and analytics', 'Branding and digital marketing', 'Cloud, security, and integrations'],
         'programs' => [
-            ['Digital Start', 'A modern digital foundation for a growing business.', '15,000', '2,500,000', '299'],
-            ['Smart Business', 'Integrated systems, commerce, automation, and growth.', '35,000', '5,500,000', '698'],
-            ['AI Business Pro', 'Advanced AI, dashboards, and enterprise workflows.', '75,000', '11,900,000', '1,495'],
-            ['Digital Transformation 360', 'A complete digital transformation program.', '150,000', '23,900,000', '2,990'],
+            ['Digital Start', 'A modern digital foundation for a growing business.', '15,500', '5,700,000', '299'],
+            ['Smart Business', 'Integrated systems, commerce, automation, and growth.', '36,500', '13,300,000', '698'],
+            ['AI Business Pro', 'Advanced AI, dashboards, and enterprise workflows.', '77,500', '28,500,000', '1,495'],
+            ['Digital Transformation', 'A complete digital transformation program.', '155,500', '57,000,000', '2,990'],
         ],
     ],
 ];
