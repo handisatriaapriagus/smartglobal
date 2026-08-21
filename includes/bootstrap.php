@@ -258,6 +258,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
             persist_record('assessment', $record);
             send_submission_notification('assessment', $record);
+            send_assessment_auto_reply($record);
             $_SESSION['flash'] = ['type' => 'success', 'message' => 'Thank you. Your free assessment request has been received. Our team will contact you shortly.'];
         }
     }

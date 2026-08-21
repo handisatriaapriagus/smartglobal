@@ -155,3 +155,76 @@ function send_submission_notification(string $type, array $record): bool
 
     return $allSent;
 }
+
+function assessment_auto_reply_html(): string
+{
+    return <<<'HTML'
+<!doctype html>
+<html lang="en">
+<body style="margin:0;padding:0;background:#f4f7f9;color:#16293d;font-family:Arial,Helvetica,sans-serif;line-height:1.6;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f7f9;padding:28px 12px;">
+<tr><td align="center">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border:1px solid #dfe6ec;border-radius:14px;overflow:hidden;">
+<tr><td style="height:8px;background:#dba63a;"></td></tr>
+<tr><td style="padding:38px 42px;">
+<p style="margin:0 0 10px;color:#b37b1f;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Free Assessment Request</p>
+<h1 style="margin:0 0 24px;color:#031c35;font-size:30px;line-height:1.2;">Thank You for Your Request</h1>
+<p>Thank you for submitting your <strong>Free Assessment Request</strong> to <strong>Smart Global Group</strong>.</p>
+<p>We have successfully received your information, and our team will carefully review your requirements and the details you provided.</p>
+<p><strong>Our Business Development Director will contact you within 48 hours</strong> to discuss your needs, answer any initial questions, and explore how Smart Global Group can support your goals with the right digital, AI, and business solutions.</p>
+<h2 style="margin:28px 0 10px;color:#031c35;font-size:18px;">What Happens Next?</h2>
+<ul style="margin:0 0 24px;padding-left:22px;">
+<li>Our team reviews your assessment request.</li>
+<li>We identify the key requirements and opportunities.</li>
+<li>Our Business Development Director contacts you within <strong>48 hours</strong>.</li>
+<li>We discuss the most suitable next steps for your project.</li>
+</ul>
+<p><strong>Your information is treated with strict confidentiality and used only to respond to your request.</strong></p>
+<p style="margin-top:28px;">Thank you for choosing <strong>Smart Global Group</strong>.<br>We look forward to connecting with you and helping turn your ideas into practical, measurable opportunities.</p>
+<p style="margin:28px 0 0;color:#031c35;"><strong>Smart Global Group</strong><br><em style="color:#647586;">Smart Solutions. Strategic Growth. Global Impact.</em></p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
+HTML;
+}
+
+function send_assessment_auto_reply(array $record): bool
+{
+    $recipient = filter_var((string) ($record['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    if ($recipient === false) {
+        return false;
+    }
+
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'From: Smart Global Group <info@smartglobalplatform.com>',
+        'Reply-To: info@smartglobalplatform.com',
+    ];
+
+    $sent = @mail(
+        $recipient,
+        'Thank You for Your Free Assessment Request',
+        assessment_auto_reply_html(),
+        implode(PHP_EOL, $headers)
+    );
+
+    if (!$sent) {
+        $storageDirectory = dirname(__DIR__) . '/storage';
+        if (!is_dir($storageDirectory)) {
+            @mkdir($storageDirectory, 0775, true);
+        }
+
+        @file_put_contents(
+            $storageDirectory . '/mail_failures.log',
+            date(DATE_ATOM) . ' | assessment_auto_reply | PHP mail() returned false' . PHP_EOL,
+            FILE_APPEND | LOCK_EX
+        );
+    }
+
+    return $sent;
+}
