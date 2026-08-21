@@ -228,3 +228,75 @@ function send_assessment_auto_reply(array $record): bool
 
     return $sent;
 }
+
+function newsletter_auto_reply_html(): string
+{
+    return <<<'HTML'
+<!doctype html>
+<html lang="en">
+<body style="margin:0;padding:0;background:#f4f7f9;color:#16293d;font-family:Arial,Helvetica,sans-serif;line-height:1.6;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f7f9;padding:28px 12px;">
+<tr><td align="center">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:680px;background:#ffffff;border:1px solid #dfe6ec;border-radius:14px;overflow:hidden;">
+<tr><td style="height:8px;background:#dba63a;"></td></tr>
+<tr><td style="padding:38px 42px;">
+<p style="margin:0 0 10px;color:#b37b1f;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;">Smart Global Insights</p>
+<h1 style="margin:0 0 24px;color:#145578;font-size:30px;line-height:1.2;">Thank You for Subscribing</h1>
+<p>Thank you for subscribing to <strong>Smart Global Group</strong>.</p>
+<p>Your subscription has been successfully received. We&rsquo;re pleased to have you connect with us and look forward to sharing valuable insights, business opportunities, digital solutions, AI innovations, and industry updates.</p>
+<p><strong>Our Business Development Director will contact you within 48 hours</strong> to welcome you personally and learn more about how Smart Global Group can support your business objectives.</p>
+<h2 style="margin:28px 0 10px;color:#145578;font-size:18px;">What Happens Next?</h2>
+<ul style="margin:0 0 24px;padding-left:22px;">
+<li>Your subscription is confirmed.</li>
+<li>Our team reviews your interests and requirements.</li>
+<li>Our Business Development Director will contact you within <strong>48 hours</strong>.</li>
+<li>We&rsquo;ll discuss relevant opportunities and potential solutions.</li>
+</ul>
+<p>We value your interest in <strong>Smart Global Group</strong> and look forward to building a meaningful business relationship with you.</p>
+<p style="margin:28px 0 0;color:#031c35;"><strong>Smart Global Group</strong><br><em style="color:#647586;">Smart Solutions. Strategic Growth. Global Impact.</em></p>
+</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>
+HTML;
+}
+
+function send_newsletter_auto_reply(array $record): bool
+{
+    $recipient = filter_var((string) ($record['email'] ?? ''), FILTER_VALIDATE_EMAIL);
+    if ($recipient === false) {
+        return false;
+    }
+
+    $headers = [
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'From: Smart Global Group <info@smartglobalplatform.com>',
+        'Reply-To: info@smartglobalplatform.com',
+    ];
+
+    $sent = @mail(
+        $recipient,
+        'Thank You for Subscribing to Smart Global Group',
+        newsletter_auto_reply_html(),
+        implode(PHP_EOL, $headers)
+    );
+
+    if (!$sent) {
+        $storageDirectory = dirname(__DIR__) . '/storage';
+        if (!is_dir($storageDirectory)) {
+            @mkdir($storageDirectory, 0775, true);
+        }
+
+        @file_put_contents(
+            $storageDirectory . '/mail_failures.log',
+            date(DATE_ATOM) . ' | newsletter_auto_reply | PHP mail() returned false' . PHP_EOL,
+            FILE_APPEND | LOCK_EX
+        );
+    }
+
+    return $sent;
+}

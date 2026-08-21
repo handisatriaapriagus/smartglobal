@@ -16,7 +16,7 @@ The assessment and newsletter forms prefer MySQL using these optional environmen
 
 Import `database/schema.sql` in phpMyAdmin to enable MySQL storage. Until then, submissions are safely appended to JSONL files inside the protected `storage/` directory.
 
-Assessment and newsletter/E-Insights submissions also send PHP `mail()` notifications to `info@smartglobalplatform.com` and `info.drmoshehatta@gmail.com`. Configure the production server mail transport (SMTP/sendmail) for delivery; failed `mail()` calls are recorded in `storage/mail_failures.log` without blocking form storage. Valid Free Assessment submissions also receive a branded confirmation auto-reply at the submitted email address.
+Assessment and newsletter/E-Insights submissions also send PHP `mail()` notifications to `info@smartglobalplatform.com` and `info.drmoshehatta@gmail.com`. Configure the production server mail transport (SMTP/sendmail) for delivery; failed `mail()` calls are recorded in `storage/mail_failures.log` without blocking form storage. Valid Free Assessment and newsletter submissions also receive branded confirmation auto-replies at the submitted email address.
 
 ## Source asset note
 

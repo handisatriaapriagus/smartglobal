@@ -158,7 +158,7 @@ $services = [
         'title' => 'Digital Technology Without Enterprise-Level Prices.',
         'summary' => 'Smart, scalable, and affordable digital solutions for startups, SMEs, corporations, and international organizations.',
         'background' => 'backgrounds/9.png',
-        'hero' => 'Photos/Gemini_Generated_Image_yexag8yexag8yexa.jpg',
+        'hero' => 'Photos/digital-ai-analytics-v2.png',
         'accent' => 'violet',
         'stats' => [['Secure', 'Reliable systems'], ['AI-ready', 'Automation'], ['Mobile-first', 'Experiences'], ['24/7', 'Technical support']],
         'features' => ['Websites and e-commerce', 'Business systems and CRM', 'AI assistants and automation', 'Data dashboards and analytics', 'Branding and digital marketing', 'Cloud, security, and integrations'],
@@ -185,7 +185,7 @@ $insights = [
     ['Global Consulting', 'How to validate an international market before committing capital.', 'Photos/Gemini_Generated_Image_qtwhgrqtwhgrqtwh.jpg', '6 min read'],
     ['Education & Training', 'Building career-ready skills for a borderless employment market.', 'Photos/Gemini_Generated_Image_3u0xmj3u0xmj3u0x.jpg', '5 min read'],
     ['Business Setup', 'The practical checklist behind a confident global launch.', 'Photos/Gemini_Generated_Image_d1iqlhd1iqlhd1iq.jpg', '8 min read'],
-    ['Digital & AI', 'Where useful AI automation creates measurable business value.', 'Photos/Gemini_Generated_Image_yexag8yexag8yexa.jpg', '7 min read'],
+    ['Digital & AI', 'Where useful AI automation creates measurable business value.', 'Photos/digital-ai-analytics-v2.png', '7 min read'],
 ];
 
 $page = strtolower((string) ($_GET['page'] ?? 'home'));
@@ -230,6 +230,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $record = ['email' => $email, 'created_at' => date(DATE_ATOM)];
             persist_record('newsletter', $record);
             send_submission_notification('newsletter', $record);
+            send_newsletter_auto_reply($record);
             $_SESSION['flash'] = ['type' => 'success', 'message' => 'Welcome to Smart Insights. Please watch your inbox.'];
         }
     } elseif ($kind === 'assessment') {
