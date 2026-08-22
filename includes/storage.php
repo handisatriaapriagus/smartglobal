@@ -191,6 +191,17 @@ function assessment_auto_reply_html(): string
 HTML;
 }
 
+function html_auto_reply_headers(): string
+{
+    return implode("\r\n", [
+        'MIME-Version: 1.0',
+        'Content-Type: text/html; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
+        'From: Smart Global Group <info@smartglobalplatform.com>',
+        'Reply-To: info@smartglobalplatform.com',
+    ]);
+}
+
 function send_assessment_auto_reply(array $record): bool
 {
     $recipient = filter_var((string) ($record['email'] ?? ''), FILTER_VALIDATE_EMAIL);
@@ -198,19 +209,11 @@ function send_assessment_auto_reply(array $record): bool
         return false;
     }
 
-    $headers = [
-        'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=UTF-8',
-        'Content-Transfer-Encoding: 8bit',
-        'From: Smart Global Group <info@smartglobalplatform.com>',
-        'Reply-To: info@smartglobalplatform.com',
-    ];
-
     $sent = @mail(
         $recipient,
         'Thank You for Your Free Assessment Request',
         assessment_auto_reply_html(),
-        implode(PHP_EOL, $headers)
+        html_auto_reply_headers()
     );
 
     if (!$sent) {
@@ -270,19 +273,11 @@ function send_newsletter_auto_reply(array $record): bool
         return false;
     }
 
-    $headers = [
-        'MIME-Version: 1.0',
-        'Content-Type: text/html; charset=UTF-8',
-        'Content-Transfer-Encoding: 8bit',
-        'From: Smart Global Group <info@smartglobalplatform.com>',
-        'Reply-To: info@smartglobalplatform.com',
-    ];
-
     $sent = @mail(
         $recipient,
         'Thank You for Subscribing to Smart Global Group',
         newsletter_auto_reply_html(),
-        implode(PHP_EOL, $headers)
+        html_auto_reply_headers()
     );
 
     if (!$sent) {

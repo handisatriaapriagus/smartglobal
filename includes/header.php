@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#031c35">
     <title><?= h($routes[$page]['title']) ?> | Smart Global Group</title>
     <link rel="icon" type="image/png" href="<?= h(asset_url('All Logo/logo-transparent.png')) ?>">
-    <link rel="stylesheet" href="<?= h(asset_url('assets/css/style.css')) ?>">
+    <link rel="stylesheet" href="<?= h(asset_url('assets/css/style.css') . '?v=' . (string) (filemtime(__DIR__ . '/../assets/css/style.css') ?: 1)) ?>">
 </head>
 <body class="page-<?= h($page) ?>">
 <a class="skip-link" href="#main-content">Skip to content</a>

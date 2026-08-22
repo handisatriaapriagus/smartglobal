@@ -18,7 +18,7 @@
         <section class="footer-brand">
             <img src="<?= h(asset_url('All Logo/logo-transparent.png')) ?>" alt="Smart Global Group" width="1254" height="1254">
             <p>Smart Global Group is an international solutions platform headquartered in Egypt, connecting businesses, leaders, students, and institutions with practical solutions and trusted global opportunities.</p>
-            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong>Reqas – New Cairo – Platinum Member – Arabella Plaza – Egypt</span></div>
+            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong>Regus – New Cairo – Platinum Member – Arabella Plaza – Egypt</span></div>
         </section>
 
         <section>
@@ -79,7 +79,7 @@
     <div class="container footer-contact-row">
         <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer"><?= icon('phone') ?><span><small>Phone / WhatsApp</small>+20 122 264 0202</span></a>
         <a href="mailto:info@smartglobalplatform.com"><?= icon('mail') ?><span><small>Email</small>info@smartglobalplatform.com</span></a>
-        <span class="footer-contact-offices"><?= icon('pin') ?><span><small>Egypt Office</small><b>Reqas – New Cairo – Platinum Member – Arabella Plaza – Egypt</b><small>Indonesia Office</small><b>Prosperity Tower SCBD – South Jakarta</b></span></span>
+        <span class="footer-contact-offices"><?= icon('pin') ?><span><small>Egypt Office</small><b>Regus – New Cairo – Platinum Member – Arabella Plaza – Egypt</b><small>Indonesia Office</small><b>Prosperity Tower SCBD – South Jakarta</b></span></span>
         <span><?= icon('globe') ?><span><small>Working Hours</small>Sun - Thu / 9:00 - 6:00</span></span>
     </div>
 

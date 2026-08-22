@@ -10,6 +10,11 @@ $footerFlags = [
     'Singapore' => '<svg class="country-flag" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="10" fill="#ef3340"/><rect y="10" width="28" height="10" fill="#fff"/><circle cx="6" cy="5" r="3.4" fill="#fff"/><circle cx="7.4" cy="4.5" r="2.9" fill="#ef3340"/><g fill="#fff"><circle cx="10.7" cy="2.3" r=".55"/><circle cx="12.3" cy="4" r=".55"/><circle cx="11.6" cy="6.2" r=".55"/><circle cx="9.5" cy="6.2" r=".55"/><circle cx="8.8" cy="4" r=".55"/></g></svg>',
 ];
 
+$footerFlags = array_map(
+    static fn (string $flag): string => str_replace('<svg class="country-flag"', '<svg class="country-flag" width="18" height="13"', $flag),
+    $footerFlags
+);
+
 $footerSocialIcons = [
     'linkedin' => '<svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M5.3 7.4H1.7V19h3.6V7.4ZM3.5 1.6a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM19 12.3c0-3.5-1.9-5.2-4.4-5.2-2 0-2.9 1.1-3.4 1.9V7.4H7.6V19h3.6v-5.7c0-1.5.3-3 2.2-3 1.9 0 1.9 1.8 1.9 3.1V19H19v-6.7Z"/></svg>',
     'facebook' => '<svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.7 20v-7h2.4l.4-2.8h-2.8V8.4c0-.8.2-1.4 1.4-1.4h1.5V4.5c-.3 0-1.2-.1-2.2-.1-2.2 0-3.8 1.4-3.8 3.9v2H8.1V13h2.5v7h3.1Z"/></svg>',
