@@ -111,7 +111,7 @@ $homePricingCopy = [
                 <p class="featured-subtitle">Global Business Launch</p>
                 <div class="featured-services"><span><?= icon('briefcase') ?>Consulting</span><b>+</b><span><?= icon('building') ?>Business Setup</span><b>+</b><span><?= icon('chart') ?>Digital Presence</span><b>+</b><span><?= icon('users') ?>Training</span></div>
                 <p>Everything you need to launch and grow your business globally.</p>
-                <div class="featured-price"><?= currency_price('89,000', '1,490,000', '1,774') ?></div>
+                <div class="featured-price"><?= currency_price('94,000', '34,200,000', '1,800') ?></div>
                 <a class="button button-gold" href="<?= h(page_url('packages')) ?>">Explore All Packages <?= icon('arrow') ?></a>
             </article>
         </div>
