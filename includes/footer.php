@@ -18,7 +18,7 @@
         <section class="footer-brand">
             <img src="<?= h(asset_url('All Logo/logo-transparent.png')) ?>" alt="Smart Global Group" width="1254" height="1254">
             <p>Smart Global Group is an international solutions platform headquartered in Egypt, connecting businesses, leaders, students, and institutions with practical solutions and trusted global opportunities.</p>
-            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong>Regus – New Cairo – Platinum Member – Arabella Plaza – Egypt</span></div>
+            <div class="footer-location"><?= icon('pin') ?><span><strong>Headquarters</strong>Regus Offices – Business lounge - Global Premium Member<br>Global Regus Membership Number: xxx736702</span></div>
         </section>
 
         <section>
@@ -77,10 +77,26 @@
     </div>
 
     <div class="container footer-contact-row">
-        <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer"><?= icon('phone') ?><span><small>Phone / WhatsApp</small>+20 122 264 0202</span></a>
-        <a href="mailto:info@smartglobalplatform.com"><?= icon('mail') ?><span><small>Email</small>info@smartglobalplatform.com</span></a>
-        <span class="footer-contact-offices"><?= icon('pin') ?><span><small>Egypt Office</small><b>Regus – New Cairo – Platinum Member – Arabella Plaza – Egypt</b><small>Indonesia Office</small><b>Prosperity Tower SCBD – South Jakarta</b></span></span>
-        <span><?= icon('globe') ?><span><small>Working Hours</small>Sun - Thu / 9:00 - 6:00</span></span>
+        <div class="footer-contact-item footer-contact-phones"><?= icon('phone') ?><div><small>Phone / WhatsApp</small>
+            <a href="https://wa.me/201555534883" target="_blank" rel="noopener noreferrer">Management: +20 15555 34883</a>
+            <a href="https://wa.me/201222640202" target="_blank" rel="noopener noreferrer">Customer Service: +20 1222 64 0202</a>
+            <a href="https://wa.me/16452042022" target="_blank" rel="noopener noreferrer">Global Customer Service: +1 645 204 20 22</a>
+        </div></div>
+        <div class="footer-contact-details">
+            <a class="footer-contact-item" href="mailto:info@smartglobalplatform.com"><?= icon('mail') ?><span><small>Email</small>info@smartglobalplatform.com</span></a>
+            <div class="footer-contact-item"><?= icon('globe') ?><span><small>Operational Hour</small>9:00 AM - 6:00 PM | EGYPT Time</span></div>
+        </div>
+        <div class="footer-contact-offices">
+            <div class="footer-office-column">
+                <div class="footer-office"><small>EGYPT Offices</small><p>Business Address: Regus – New Capital Cairo – Pioneer Plaza – Business Complex</p><p>Customer Address: Regus – Ewalks Mall New Cairo - Business Sector</p><p>Company Name: Smart Business Platform Global for training and software Design</p><p>Commercial Registration Number: 298467</p></div>
+                <div class="footer-office"><small>Rwanda Office</small><p>Regus Offices Partners - Business Lounge</p><p>Company Name: Dar International Group LTD</p><p>Company Code: 121636682</p></div>
+            </div>
+            <div class="footer-office-column">
+                <div class="footer-office"><small>Indonesia Offices</small><p>Business Address: Regus - Jakarta, JB Tower</p><p>Customer Address: Prosperity Tower SCBD – South Jakarta</p><p>Company Name: PT Global Bisnis Hub Group</p><p>Business Identification Number: 25022 602 86958</p></div>
+                <div class="footer-office"><small>Malaysia Member Office</small><p>Signature by Regus - Kuala Lumpur, Q Sentral</p></div>
+                <div class="footer-office"><small>USA Regional Regus Member Office</small><p>Regus - Colorado Springs - Downtown Alamo Corporate Center</p><p>Global Customer Service: +1 645 204 20 22</p></div>
+            </div>
+        </div>
     </div>
 
     <div class="container footer-bottom">
